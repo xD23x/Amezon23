@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            height: 60px;
+            background-color: #131921;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            height: 50px;
+            width: 100px;
+            background-image: url("amazon_logo.png");
+            background-size: cover;
+        }
+
+        .nav-address, .nav-signin, .nav-return, .nav-cart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .nav-search {
+            display: flex;
+            background-color: #fff;
+            width: 100%;
+            max-width: 620px;
+            height: 40px;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-select, .search-input, .search-icon {
+            border: none;
+            outline: none;
+        }
+
+        .search-select {
+            background-color: #f3f3f3;
+            width: 80px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0 10px;
+            font-size: 1rem;
+        }
+
+        .search-icon {
+            width: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            background-color: #febd69;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .panel {
+            height: 40px;
+            display: flex;
+            background-color: #222f3d;
+            color: white;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .panel-ops {
+            display: flex;
+            justify-content: space-around;
+            width: 70%;
+            font-size: 0.85rem;
+        }
+
+        .panel-ops p {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .hero-section {
+            background-image: url("hero_image.jpg");
+            height: 400px;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .hero-message {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            width: 80%;
+            margin: 25px;
+            border-radius: 5px;
+        }
+
+        .shop-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            background-color: #e2e7e6;
+            padding: 20px 0;
+        }
+
+        .box {
+            height: 420px;
+            width: 23%;
+            background-color: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .box:hover {
+            transform: scale(1.02);
+        }
+
+        .box-img {
+            height: 350px;
+            background: no-repeat;
+            background-size: cover;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        .featured-products {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .featured-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .featured-box {
+            display: inline-block;
+            width: 150px;
+            margin: 10px;
+            text-align: center;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .footer {
+            margin-top: 15px;
+            background-color: #222f3d;
+            color: white;
+        }
+
+        .foot-panel1 {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: medium;
+        }
+
+        .foot-panel2 {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul a {
+            color: #dddddd;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .foot-panel3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            border-top: 0.5px solid white;
+        }
+
+        .foot-panel4 {
+            background-color: #0f1111;
+            color: white;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page {
+            font-size: 12px;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .nav-search {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .box {
+                width: 45%; /* Adjust width for tablet view */
+            }
+
+            .featured-box {
+                width: 120px; /* Adjust featured product box width */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 90%; /* Full width for mobile */
+                margin: 10px auto;
+            }
+
+            .featured-box {
+                width: 100%; /* Full width for featured products */
+            }
+
+            .panel-ops {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .panel-ops p {
+                margin: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 5px;
+            }
+
+            .nav-logo {
+                margin-bottom: 10px;
+            }
+
+            .hero-message {
+                font-size: 0.75rem; /* Smaller text on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo"></div>
+            <div class="nav-address">
+                <p class="add-first">Deliver to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-sec">India</p>
+                </div>
+            </div>
+            <div class="nav-search">
+                <select class="search-select">
+                    <option>All</option>
+                </select>
+                <input placeholder="Search amazon" class="search-input">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="nav-signin border">
+                <p><span>Hello, sign in</span></p>
+                <p class="nav-second">Accounts & lists</p>
+            </div>
+            <div class="nav-return border">
+                <p><span>Return</span></p>
+                <p class="nav-second">& Orders</p>
+            </div>
+            <div class="nav-cart border">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+            </div>
+        </div>
+    </header>
+
+    <div class="panel">
+        <div class="panel-ops">
+            <p>Today's Deals</p>
+            <p>Customer Service</p>
+            <p>Gift Cards</p>
+            <p>Registry</p>
+            <p>Sell</p>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-message">
+            <p>Discover Amazing Deals Every Day!</p>
+        </div>
+    </div>
+
+    <div class="shop-section">
+        <div class="box">
+            <div class="box-content">
+                <h2>Electronics</h2>
+                <div class="box-img" style="background-image: url('box2_image.jpg');"></div>
+                <p>See More</p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <h2>Books</h2>
+                <div class="box-img" style="background-image: url('box3_image.jpg');"></div>
+                <p>See More</p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <h2>Home & Kitchen</h2>
+                <div class="box-img" style="background-image: url('box4_image.jpg');"></div>
+                <p>See More</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="featured-products">
+        <h2 class="featured-title">Featured Products</h2>
+        <div class="featured-box" style="background-image: url('featured1_image.jpg');">
+            <p>Featured Item 1</p>
+        </div>
+        <div class="featured-box" style="background-image: url('featured2_image.jpg');">
+            <p>Featured Item 2</p>
+        </div>
+        <div class="featured-box" style="background-image: url('featured3_image.jpg');">
+            <p>Featured Item 3</p>
+        </div>
+        <div class="featured-box" style="background-image: url('featured4_image.jpg');">
+            <p>Featured Item 4</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="foot-panel1">
+                <p>Amazon Clone © 2024</p>
+            </div>
+            <div class="foot-panel2">
+                <div>
+                    <h3>Get to Know Us</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press Releases</a></li>
+                        <li><a href="#">Amazon Cares</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Connect with Us</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Make Money with Us</h3>
+                    <ul>
+                        <li><a href="#">Sell on Amazon</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Advertise Your Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Let Us Help You</h3>
+                    <ul>
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Returns Centre</a></li>
+                        <li><a href="#">100% Purchase Protection</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-panel3">
+                <p>All rights reserved.</p>
+            </div>
+            <div class="foot-panel4">
+                <p class="page">Page 1 of 1</p>
+                <p class="copyright">© 2024 Amazon Clone</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
